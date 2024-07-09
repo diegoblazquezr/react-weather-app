@@ -31,7 +31,7 @@ const WeatherList = () => {
   const getCityByCoords = async () => {
     try {
       // Petición HTTP
-      const res = await axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${userLocation[0]}&lon=${userLocation[1]}&appid=${weatherApiKey}`);
+      const res = await axios.get(`https://api.openweathermap.org/geo/1.0/reverse?lat=${userLocation[0]}&lon=${userLocation[1]}&appid=${weatherApiKey}`);
       // console.log(res);
       const json = res.data;
       // console.log(json[0].name);
@@ -55,7 +55,7 @@ const WeatherList = () => {
       if (value) {
         try {
           // Petición HTTP
-          const res = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${weatherApiKey}`);
+          const res = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${weatherApiKey}`);
           console.log(res);
           const json = res.data.list;
           // console.log(json);
