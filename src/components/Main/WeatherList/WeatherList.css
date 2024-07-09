@@ -1,8 +1,28 @@
+#section-form {
+    text-align: center;
+}
+
+#section-form h2 {
+    margin-top: 30px;
+}
+
+#city-form input[type=text] {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
 #section-cards {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     gap: 10px;
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
 }

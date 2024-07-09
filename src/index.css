@@ -4,3 +4,7 @@
   font-family: Verdana;
   box-sizing: border-box;
 }
+
+body {
+  background-color: lightcyan;
+}

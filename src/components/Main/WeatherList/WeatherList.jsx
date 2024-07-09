@@ -36,33 +36,37 @@ const WeatherList = () => {
       const json = res.data;
       // console.log(json[0].name);
 
-      return json[0].name
-      // setValue(json[0].name);
+      setValue(json[0].name);
     } catch (e) {
       console.log(e);
     }
   }
 
-  const [value, setValue] = useState(getUserLocation()); // Para guardar el dato a buscar
+  const [value, setValue] = useState(''); // Para guardar el dato a buscar
   const [weatherInfo, setWeatherInfo] = useState([]); // Para guardar los weatherInfo
+
+  useEffect(() => {
+    getUserLocation();
+  }, []); // Run once on mount
 
   // equivale a un componentDidUpdate()
   useEffect(() => {
     async function fetchData() {
-      try {
-        // Petición HTTP
-        const res = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${weatherApiKey}`);
-        console.log(res);
-        const json = res.data.list;
-        // console.log(json);
+      if (value) {
+        try {
+          // Petición HTTP
+          const res = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${weatherApiKey}`);
+          console.log(res);
+          const json = res.data.list;
+          // console.log(json);
 
-        // Guarda en el array de weatherInfo el resultado. Procesa los datos
-        setWeatherInfo(json.map(c => c));
-      } catch (e) {
-        setWeatherInfo([]) // No pintes nada 
+          // Guarda en el array de weatherInfo el resultado. Procesa los datos
+          setWeatherInfo(json.map(c => c));
+        } catch (e) {
+          setWeatherInfo([]) // No pintes nada 
+        }
       }
     }
-
     fetchData();
   }, [value]); // componentDidUpdate
 
@@ -87,12 +91,12 @@ const WeatherList = () => {
 
   return (
     <>
-      <section>
-        <h2>Weather from {value}</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="city">City: </label>
-          <input name="city" />
+      <section id="section-form">
+        <form onSubmit={handleSubmit} id="city-form">
+          {/* <label htmlFor="city">City: </label> */}
+          <input name="city" type="text" placeholder="Write a city..." />
         </form>
+        <h2>Weather from {value}</h2>
         {/* <button onClick={getUserLocation}>My Position</button> */}
       </section>
       <section id="section-cards">
